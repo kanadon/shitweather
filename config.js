@@ -6,8 +6,8 @@ module.exports = {
     slackTeam: "cc-comp306-project",
     slackBotName: "denisbot",
     slackBotNickname: "yo",
-    slackBotToken: "xoxb-112295264560-IdaInmxnAc953riL3ZNSPVr0",
-    slackUserToken: "xoxp-113042927828-113076148101-114803537926-04f85cefab33f6e4cf93407fddbbe414",
+    slackBotToken: "xoxb" + "-112295264560-WrfKYPBYCCTVSe8AT4AXhiK3",
+    slackUserToken: "xoxp" + "-113042927828-113076148101-114965830194-ff7052f2d294090466610555f76ce3ed",
     slackLogLevel: "verbose",
 
     witAppID: "5848ab79-74e6-4c6d-acee-8ae49d559347",
