@@ -1,0 +1,84 @@
+var config = require("../config");
+var RtmClient = require("@slack/client").RtmClient;
+var CLIENT_EVENTS = require("@slack/client").CLIENT_EVENTS;
+var RTM_EVENTS = require("@slack/client").RTM_EVENTS;
+
+var rtm = new RtmClient(config.slackBotToken);
+rtm.start();
+console.log(config.slackBotName);
+// rtm.on(RTM_EVENTS.MESSAGE, function (message) {
+//     console.log(message);
+//     rtm.sendMessage("hi", message.channel);
+// });
+
+// rtm.on(CLIENT_EVENTS.RTM.AUTHENTICATED, function (rtmStartData) {
+//     console.log("AUTHENTICATED");
+// });
+
+// rtm.on(CLIENT_EVENTS.RTM.WS_OPENING, function (rtmStartData) {
+//     console.log("WS_OPENING");
+// });
+
+// rtm.on(CLIENT_EVENTS.RTM.WS_OPENED, function (rtmStartData) {
+//     console.log("WS_OPENED");
+// });
+
+// rtm.on(CLIENT_EVENTS.RTM_CONNECTION_OPENED, function (data) {
+//     console.log("RTM_CONNECTION_OPENED");
+// });
+
+// rtm.on(CLIENT_EVENTS.RTM.DISCONNECT, function () {
+//     console.log("DISCONNECT");
+// });
+
+// rtm.on(CLIENT_EVENTS.RTM.UNABLE_TO_RTM_START, function () {
+//     console.log("UNABLE_TO_RTM_START");
+// });
+
+// rtm.on(CLIENT_EVENTS.RTM.WS_CLOSE, function () {
+//     console.log("WS_CLOSE");
+// });
+
+// rtm.on(CLIENT_EVENTS.RTM.WS_ERROR, function () {
+//     console.log("WS_ERROR");
+// });
+
+// rtm.on(CLIENT_EVENTS.RTM.ATTEMPTING_RECONNECT, function () {
+//     console.log("ATTEMPTING_RECONNECT");
+// });
+
+// rtm.on(CLIENT_EVENTS.RTM.RAW_MESSAGE, function (message) {
+//     // console.log("RAW_MESSAGE");
+//     // console.log(message);
+// });
+
+// rtm.on(CLIENT_EVENTS.RTM.MESSAGE, function (message) {
+//     console.log("MESSAGE");
+// });
+
+// slack.chat.postMessage({
+//     token: config.slackToken,
+//     channel: config.slackChannel,
+//     username: config.slackUser,
+//     text: "yo"
+// }, function () {
+//     console.log("finished");
+// });
+
+// bot.message(function (message) {
+//     slack.chat.postMessage({
+//         token: config.slackToken,
+//         channel: config.slackChannel,
+//         username: config.slackUser,
+//         text: "yo"
+//     }, function () {
+//         console.log("finished");
+//         bot.close();
+//     });
+
+//     // bot.close();
+// });
+
+// bot.listen({
+//     token: token
+// });
