@@ -2,24 +2,29 @@
 
 const config = require("../config");
 const RtmClient = require("@slack/client").RtmClient;
+const WebClient = require("@slack/client").WebClient;
 const CLIENT_EVENTS = require("@slack/client").CLIENT_EVENTS;
 const RTM_EVENTS = require("@slack/client").RTM_EVENTS;
 let rtm = null;
+let web = null;
 let nlp = null;
 
 function handleOnAuthenticated(rtmStartData) {
     console.log(`Logged in as ${rtmStartData.self.name} of team ${rtmStartData.team.name}, but not yet connected to a channel`);
+
 }
 
 function handleOnMessage(message) {
-    //"<@U3A8P7SGG>"
-    if (message.text.toLowerCase().includes(config.slackBotName)) {
+    web.users.info(message.user, function (err, info) {
+        var x = 1;
+    });
 
+
+
+    if (message.text.toLowerCase().includes(config.slackBotName)) {
         nlp.ask(message.text, (err, res) => {
-            if (err) {
-                console.log(err);
-                return;
-            }
+            if (err)
+                return console.log(err);
 
             try {
                 if (!res.intent || !res.intent[0] || !res.intent[0].value) {
@@ -34,8 +39,13 @@ function handleOnMessage(message) {
                         return;
                     }
 
-                    return rtm.sendMessage(response, message.channel);
-                })
+                    // return rtm.sendMessage(response, message.channel);
+
+                    return web.chat.postMessage(message.channel, response.text, response.options, function (err, info) {
+                        if (err)
+                            console.log(err);
+                    });
+                });
             } catch (err) {
                 console.log(err);
                 console.log(res);
@@ -53,6 +63,7 @@ exports.init = function (token, logLevel, nlpClient) {
     rtm = new RtmClient(token, {
         logLevel: logLevel
     });
+    web = new WebClient(token);
     nlp = nlpClient;
     addAuthenticatedHandler(rtm, handleOnAuthenticated);
     rtm.on(RTM_EVENTS.MESSAGE, handleOnMessage);
